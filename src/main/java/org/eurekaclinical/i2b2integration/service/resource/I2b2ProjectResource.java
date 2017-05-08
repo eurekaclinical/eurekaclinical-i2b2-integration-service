@@ -31,7 +31,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.eurekaclinical.i2b2integration.service.dao.I2b2ProjectDao;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2ProjectEntity;
-import org.eurekaclinical.i2b2.integration.client.comm.I2b2Project;
+import org.eurekaclinical.i2b2integration.client.comm.I2b2Project;
 
 
 /**

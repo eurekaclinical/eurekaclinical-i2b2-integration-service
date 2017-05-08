@@ -46,7 +46,7 @@ import org.eurekaclinical.i2b2integration.service.dao.I2b2RoleDao;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2DomainEntity;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2ProjectEntity;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2RoleEntity;
-import org.eurekaclinical.i2b2.integration.client.comm.I2b2User;
+import org.eurekaclinical.i2b2integration.client.comm.I2b2User;
 import org.eurekaclinical.i2b2integration.service.props.I2b2EurekaServicesProperties;
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
 import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementProxyClient;

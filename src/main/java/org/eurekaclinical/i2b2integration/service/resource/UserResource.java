@@ -20,18 +20,10 @@ package org.eurekaclinical.i2b2integration.service.resource;
  * #L%
  */
 import com.google.inject.persist.Transactional;
-import freemarker.template.Configuration;
-import freemarker.template.DefaultObjectWrapper;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import freemarker.template.Version;
-import java.io.IOException;
-import java.io.StringWriter;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -49,7 +41,7 @@ import org.eurekaclinical.i2b2integration.service.entity.RoleEntity;
 import org.eurekaclinical.i2b2integration.service.entity.UserEntity;
 import org.eurekaclinical.i2b2integration.service.entity.UserTemplateEntity;
 import org.eurekaclinical.standardapis.dao.GroupDao;
-import org.eurekaclinical.i2b2.integration.client.comm.I2b2IntegrationUser;
+import org.eurekaclinical.i2b2integration.client.comm.I2b2IntegrationUser;
 import org.eurekaclinical.standardapis.dao.UserTemplateDao;
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
 import org.jasig.cas.client.authentication.AttributePrincipal;

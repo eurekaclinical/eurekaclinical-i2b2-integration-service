@@ -27,7 +27,7 @@ import javax.ws.rs.Path;
 import org.eurekaclinical.common.resource.AbstractNamedReadOnlyResource;
 import org.eurekaclinical.i2b2integration.service.dao.I2b2RoleDao;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2RoleEntity;
-import org.eurekaclinical.i2b2.integration.client.comm.I2b2Role;
+import org.eurekaclinical.i2b2integration.client.comm.I2b2Role;
 
 
 /**

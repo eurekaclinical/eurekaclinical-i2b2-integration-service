@@ -31,7 +31,7 @@ import org.eurekaclinical.i2b2integration.service.entity.GroupEntity;
 import org.eurekaclinical.i2b2integration.service.entity.RoleEntity;
 import org.eurekaclinical.i2b2integration.service.entity.UserTemplateEntity;
 import org.eurekaclinical.standardapis.dao.GroupDao;
-import org.eurekaclinical.i2b2.integration.client.comm.I2b2IntegrationUserTemplate;
+import org.eurekaclinical.i2b2integration.client.comm.I2b2IntegrationUserTemplate;
 import org.eurekaclinical.standardapis.dao.UserTemplateDao;
 
 /**

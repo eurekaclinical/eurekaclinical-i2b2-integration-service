@@ -32,7 +32,7 @@ import org.eurekaclinical.i2b2integration.service.dao.I2b2RoleDao;
 import org.eurekaclinical.i2b2integration.service.entity.GroupEntity;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2ProjectEntity;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2RoleEntity;
-import org.eurekaclinical.i2b2.integration.client.comm.I2b2IntegrationGroup;
+import org.eurekaclinical.i2b2integration.client.comm.I2b2IntegrationGroup;
 import org.eurekaclinical.standardapis.dao.GroupDao;
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
 
