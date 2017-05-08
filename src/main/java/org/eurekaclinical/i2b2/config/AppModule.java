@@ -23,7 +23,6 @@ package org.eurekaclinical.i2b2.config;
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
 import org.eurekaclinical.eureka.client.EurekaProxyClient;
-import org.eurekaclinical.i2b2.provider.EurekaClientProvider;
 import org.eurekaclinical.i2b2.dao.I2b2DomainDao;
 import org.eurekaclinical.i2b2.dao.I2b2ProjectDao;
 import org.eurekaclinical.i2b2.dao.I2b2RoleDao;
@@ -49,7 +48,6 @@ import org.eurekaclinical.i2b2.client.I2b2ClientFactory;
 import org.eurekaclinical.i2b2.client.I2b2ClientFactoryImpl;
 import org.eurekaclinical.i2b2.client.I2b2UserSetterFactory;
 import org.eurekaclinical.i2b2.client.I2b2UserSetterFactoryImpl;
-import org.eurekaclinical.i2b2.provider.EurekaClinicalUserAgreementClientProvider;
 import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementProxyClient;
 
 /**
@@ -58,23 +56,31 @@ import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementProxyC
  * @author Michel Mansour
  * @since 1.0
  */
-public class GuiceConfigModule extends AbstractModule {
+public class AppModule extends AbstractModule {
 
-	@Override
-	protected void configure() {
-		bind(I2b2ClientFactory.class).to(I2b2ClientFactoryImpl.class);
-		bind(I2b2UserSetterFactory.class).to(I2b2UserSetterFactoryImpl.class);
-		bind(EurekaProxyClient.class).toProvider(EurekaClientProvider.class);
-		bind(EurekaClinicalUserAgreementProxyClient.class).toProvider(EurekaClinicalUserAgreementClientProvider.class);
-		bind(new TypeLiteral<UserDao<UserEntity>>() {}).to(JpaUserDao.class);
-		bind(new TypeLiteral<UserTemplateDao<UserTemplateEntity>>() {}).to(JpaUserTemplateDao.class);
+    private final EurekaProxyClient eurekaClient;
+    private final EurekaClinicalUserAgreementProxyClient userAgreementClient;
+
+    public AppModule(EurekaProxyClient inEurekaClient, EurekaClinicalUserAgreementProxyClient inUserAgreementClient) {
+        this.eurekaClient = inEurekaClient;
+        this.userAgreementClient = inUserAgreementClient;
+    }
+    
+    @Override
+    protected void configure() {
+        bind(I2b2ClientFactory.class).to(I2b2ClientFactoryImpl.class);
+        bind(I2b2UserSetterFactory.class).to(I2b2UserSetterFactoryImpl.class);
+        bind(EurekaProxyClient.class).toInstance(this.eurekaClient);
+        bind(EurekaClinicalUserAgreementProxyClient.class).toInstance(this.userAgreementClient);
+        bind(new TypeLiteral<UserDao<UserEntity>>() {}).to(JpaUserDao.class);
+        bind(new TypeLiteral<UserTemplateDao<UserTemplateEntity>>() {}).to(JpaUserTemplateDao.class);
         bind(new TypeLiteral<UserDao<? extends org.eurekaclinical.standardapis.entity.UserEntity<? extends org.eurekaclinical.standardapis.entity.RoleEntity>>>() {}).to(JpaUserDao.class);
         bind(new TypeLiteral<RoleDao<RoleEntity>>() {}).to(JpaRoleDao.class);
-		bind(new TypeLiteral<GroupDao<GroupEntity>>() {}).to(JpaGroupDao.class);
-		bind(new TypeLiteral<I2b2ProjectDao<I2b2ProjectEntity>>() {}).to(JpaI2b2ProjectDao.class);
-		bind(new TypeLiteral<I2b2RoleDao<I2b2RoleEntity>>() {}).to(JpaI2b2RoleDao.class);
-		bind(I2b2RoleDao.class).to(JpaI2b2RoleDao.class);
-		bind(org.eurekaclinical.i2b2.dao.UserDao.class).to(JpaUserDao.class);
-		bind(new TypeLiteral<I2b2DomainDao<I2b2DomainEntity>>() {}).to(JpaI2b2DomainDao.class);
-	}
+        bind(new TypeLiteral<GroupDao<GroupEntity>>() {}).to(JpaGroupDao.class);
+        bind(new TypeLiteral<I2b2ProjectDao<I2b2ProjectEntity>>() {}).to(JpaI2b2ProjectDao.class);
+        bind(new TypeLiteral<I2b2RoleDao<I2b2RoleEntity>>() {}).to(JpaI2b2RoleDao.class);
+        bind(I2b2RoleDao.class).to(JpaI2b2RoleDao.class);
+        bind(org.eurekaclinical.i2b2.dao.UserDao.class).to(JpaUserDao.class);
+        bind(new TypeLiteral<I2b2DomainDao<I2b2DomainEntity>>() {}).to(JpaI2b2DomainDao.class);
+    }
 }

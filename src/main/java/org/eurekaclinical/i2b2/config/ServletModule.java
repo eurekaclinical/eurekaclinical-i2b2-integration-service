@@ -31,10 +31,10 @@ import org.eurekaclinical.i2b2.props.I2b2EurekaServicesProperties;
  * @author Michel Mansour
  * @since 1.0
  */
-public class ServletConfigModule extends AbstractAuthorizingJerseyServletModuleWithPersist {
+public class ServletModule extends AbstractAuthorizingJerseyServletModuleWithPersist {
 	private static final String PACKAGE_NAMES = "org.eurekaclinical.i2b2.resource";
 	
-	public ServletConfigModule(I2b2EurekaServicesProperties inProperties) {
+	public ServletModule(I2b2EurekaServicesProperties inProperties) {
 		super(inProperties, PACKAGE_NAMES);
 	}
 	
