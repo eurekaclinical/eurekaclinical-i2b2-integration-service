@@ -96,7 +96,7 @@ Properties:
 * `roles`: array of numerical ids of the Roles to assign users.
 * `groups`: array of numerical ids of the Groups to assign users.
 * `autoAuthorize`: whether this template should be applied when auto-authorization is requested. There should only be one template that has a value of `true` for this property.
-* `criteria`: a Freemarker expression that evaluates the user's CAS attributes to return `true` if the user should be auto-authorized and `false` if not. For example, the criteria `type != "student" && organization == "Hanford University"` specify that the user's `type` attribute cannot have the value "student" and the user's `organization` attribute must have the value "Hanford University".
+* `criteria`: a Freemarker expression that evaluates the user's CAS attributes to return `true` if the user should be auto-authorized and `false` if not. For example, the expression `type != "student" && organization == "Hanford University"` specifies that the user's `type` attribute cannot have the value "student" and the user's `organization` attribute must have the value "Hanford University".
 
 #### Calls
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
