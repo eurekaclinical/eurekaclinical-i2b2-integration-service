@@ -54,6 +54,9 @@ Creates a new user. The User object is passed in as the body of the request. Ret
 ##### PUT `/api/protected/users/{id}`
 Updates the user object with the specified id. The User object is passed in as the body of the request. Requires the `admin` role.
 
+##### GET or POST `/api/protected/users/auto`
+Will auto-register the user with this service if there is a user template with `autoAuthorize` equal to `true`, and if the template's `criteria` property is either empty, or the user's CAS attributes satisfy the specified criteria. If auto-authorization fails, a 403 status code is returned.
+
 ### `/api/protected/roles`
 Manages roles for this service. It is read-only.
 
@@ -81,7 +84,7 @@ Returns a specified Role object by the value of its id property, which is unique
 Manages templates for auto-registering users and assigning authorization.
 
 #### Role-based authorization
-Call-dependent
+Requires the `admin` role.
 
 #### Requires successful authentication
 Yes
@@ -99,19 +102,16 @@ Properties:
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
 
 ##### GET `/api/protected/usertemplates`
-Returns an array of all UserTemplate objects. Requires the `admin` role.
+Returns an array of all UserTemplate objects.
 
 ##### GET `/api/protected/usertemplates/{id}`
-Returns a specified UserTemplate object by the value of its id property, which is unique. Requires the `admin` role to return any user record. Otherwise, it will only return the template that was applied to the current user.
-
-##### GET `/api/protected/usertemplates/me`
-Returns the UserTemplate, if any, that was applied to register the current user with this service.
+Returns a specified UserTemplate object by the value of its id property, which is unique.
 
 ##### POST `/api/protected/usertemplates/`
-Creates a new template. The UserTemplate object is passed in as the body of the request. Returns the URI of the created UserTemplate object. Requires the `admin` role.
+Creates a new template. The UserTemplate object is passed in as the body of the request. Returns the URI of the created UserTemplate object.
 
 ##### PUT `/api/protected/usertemplates/{id}`
-Updates the UserTemplate object with the specified id. The UserTemplate object is passed in as the body of the request. Requires the `admin` role.
+Updates the UserTemplate object with the specified id. The UserTemplate object is passed in as the body of the request.
 
 ## Building it
 The project uses the maven build tool. Typically, you build it by invoking `mvn clean install` at the command line. For simple file changes, not additions or deletions, you can usually use `mvn install`. See https://github.com/eurekaclinical/dev-wiki/wiki/Building-Eureka!-Clinical-projects for more details.
