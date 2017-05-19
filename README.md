@@ -86,6 +86,29 @@ Returns a specified Role object by the value of its id property, which is unique
 ##### GET `/api/protected/roles/byname/{name}`
 Returns a specified Role object by the value of its name property, which is unique.
 
+### `/api/protected/i2b2users`
+Manages i2b2 user accounts.
+
+#### Role-based authorization
+Call-dependent
+
+#### Requires successful authentication
+Yes
+
+#### I2b2User object
+
+Properties:
+* `username`: the user's unique username.
+
+#### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
+##### GET `/api/protected/i2b2domains/{id}/i2b2users/{username}`
+Returns the specified i2b2 user in the i2b2 domain with the specified numerical id.
+
+##### POST `/api/protected/i2b2users/auto`
+Automatically creates user and role records in i2b2's PM cell, if the user is authorized for eurekaclinical-i2b2-integration and is a member of a group that has an associated i2b2 project. The request body should be empty. If successful, returns the URI of the created I2b2User object. If not, returns a 403 status code.
+
 ### `/api/protected/i2b2roles`
 The allowed roles in i2b2. Is read-only.
 
