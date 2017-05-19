@@ -45,8 +45,8 @@ Returns an array of all User objects. Requires the `admin` role.
 ##### GET `/api/protected/users/{id}`
 Returns a specified User object by the value of its id property, which is unique. Requires the `admin` role to return any user record. Otherwise, it will only return the user's own record.
 
-##### GET `/api/protected/users/byname/{name}`
-Returns a specified User object by the value of its id property, which is unique. Requires the `admin` role to return any user record. Otherwise, it will only return the user's own record.
+##### GET `/api/protected/users/byname/{username}`
+Returns a specified User object by its username, which is unique. Requires the `admin` role to return any user record. Otherwise, it will only return the user's own record.
 
 ##### GET `/api/protected/users/me`
 Returns the User object for the currently authenticated user.
@@ -82,6 +82,36 @@ Returns an array of all User objects.
 
 ##### GET `/api/protected/roles/{id}`
 Returns a specified Role object by the value of its id property, which is unique.
+
+##### GET `/api/protected/roles/byname/{name}`
+Returns a specified Role object by the value of its name property, which is unique.
+
+### `/api/protected/i2b2roles`
+The allowed roles in i2b2. Is read-only.
+
+#### Role-based authorization
+No
+
+#### Requires successful authentication
+Yes
+
+#### I2b2Role object
+
+Properties:
+* `id`: unique number identifying the role.
+* `name`: unique name string identifying the role.
+
+#### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
+##### GET `/api/protected/i2b2roles`
+Returns an array of all I2b2Role objects.
+
+##### GET `/api/protected/i2b2roles/{id}`
+Returns a specified I2b2Role object by the value of its id property, which is unique.
+
+##### GET `/api/protected/i2b2roles/byname/{name}`
+Returns a specified I2b2Role object by the value of its name property, which is unique.
 
 ### `/api/protected/groups`
 Manages assignment of users to groups. The groups control which i2b2 projects a user may get assigned to, and the i2b2 roles a user will be assigned during auto-authorization.
