@@ -127,6 +127,10 @@ Yes
 Properties:
 * `id`: unique number identifying the i2b2 domain.
 * `name`: unique name string identifying the i2b2 domain.
+* `proxyUrl`: the URL of the i2b2 web client proxy.
+* `redirectHost`: the URL of the i2b2 server.
+* `adminUsername`: a username with admin privileges.
+* `adminPassword`: that admin user's password.
 
 #### Calls
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
