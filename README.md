@@ -113,6 +113,29 @@ Returns a specified I2b2Role object by the value of its id property, which is un
 ##### GET `/api/protected/i2b2roles/byname/{name}`
 Returns a specified I2b2Role object by the value of its name property, which is unique.
 
+### `/api/protected/i2b2projects`
+Manages i2b2 projects for which users may be assigned during auto-authorization. Is read-only.
+
+#### Role-based authorization
+Call-dependent
+
+#### Requires successful authentication
+Yes
+
+#### I2b2Project object
+
+Properties:
+* `id`: unique number identifying the i2b2 project.
+* `name`: unique name string identifying the i2b2 project.
+* `groups`: array of group unique id numbers for which members will be authorized for this project during auto-authorization.
+* `i2b2Domain`: unique id number of the i2b2 project's domain.
+
+#### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
+##### GET `/api/protected/i2b2projects`
+Returns an array of all I2b2Project objects. Must have the `admin` role.
+
 ### `/api/protected/groups`
 Manages assignment of users to groups. The groups control which i2b2 projects a user may get assigned to, and the i2b2 roles a user will be assigned during auto-authorization.
 
