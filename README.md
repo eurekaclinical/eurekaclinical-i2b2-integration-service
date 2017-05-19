@@ -45,6 +45,9 @@ Returns an array of all User objects. Requires the `admin` role.
 ##### GET `/api/protected/users/{id}`
 Returns a specified User object by the value of its id property, which is unique. Requires the `admin` role to return any user record. Otherwise, it will only return the user's own record.
 
+##### GET `/api/protected/users/byname/{name}`
+Returns a specified User object by the value of its id property, which is unique. Requires the `admin` role to return any user record. Otherwise, it will only return the user's own record.
+
 ##### GET `/api/protected/users/me`
 Returns the User object for the currently authenticated user.
 
@@ -79,6 +82,41 @@ Returns an array of all User objects.
 
 ##### GET `/api/protected/roles/{id}`
 Returns a specified Role object by the value of its id property, which is unique.
+
+### `/api/protected/groups`
+Manages assignment of users to groups. The groups control which i2b2 projects a user may get assigned to, and the i2b2 roles a user will be assigned during auto-authorization.
+
+#### Role-based authorization
+Call-dependent
+
+#### Requires successful authentication
+Yes
+
+#### Group object
+
+Properties:
+* `id`: unique number identifying the user (set by the server on object creation, and required thereafter).
+* `name`: unique name for the group.
+* `i2b2Roles`: array of unique identifier numbers for I2b2Role objects.
+* `i2b2Projects`: array of unique identifier numbers for I2b2Project objects.
+
+### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
+##### GET `/api/protected/groups`
+Returns an array of all Group objects. Requires the `admin` role.
+
+##### GET `/api/protected/groups/{id}`
+Returns a specified Group object by the value of its id property, which is unique.
+
+##### GET `/api/protected/groups/byname/{name}`
+Returns a specified Group object by its name property, which is unique.
+
+##### POST `/api/protected/groups/`
+Creates a new group. The Group object is passed in as the body of the request. Returns the URI of the created Group object.
+
+##### PUT `/api/protected/groups/{id}`
+Updates the Group object with the specified id. The Group object is passed in as the body of the request.
 
 ### `/api/protected/usertemplates`
 Manages templates for auto-registering users and assigning authorization.
