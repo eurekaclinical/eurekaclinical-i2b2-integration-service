@@ -56,74 +56,74 @@ import org.slf4j.LoggerFactory;
 @Produces(MediaType.APPLICATION_JSON)
 public class PatientSetResource {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PatientSetResource.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PatientSetResource.class);
 
-	private final EurekaProxyClient eurekaClient;
-	private final I2b2EurekaServicesProperties properties;
+    private final EurekaProxyClient eurekaClient;
+    private final I2b2EurekaServicesProperties properties;
 
-	@Inject
-	public PatientSetResource(EurekaProxyClient inEurekaClient, I2b2EurekaServicesProperties inProperties) {
-		this.eurekaClient = inEurekaClient;
-		this.properties = inProperties;
-	}
+    @Inject
+    public PatientSetResource(EurekaProxyClient inEurekaClient, I2b2EurekaServicesProperties inProperties) {
+        this.eurekaClient = inEurekaClient;
+        this.properties = inProperties;
+    }
 
-	@GET
-	public Response doSend(
-			@QueryParam("resultInstanceId") String resultInstanceId, 
-			@QueryParam("action") String actionId) 
-			throws ClientException {
-		InputStream inputStream = null;
-		try {
-			JobSpec jobSpec = new JobSpec();
-			jobSpec.setUpdateData(false);
-			jobSpec.setDestinationId(actionId);
-			jobSpec.setSourceConfigId(properties.getSourceConfigId());
-			SourceConfig sc = new SourceConfig();
-			sc.setId(properties.getSourceConfigId());
-			Section section = new Section();
-			section.setId("edu.emory.cci.aiw.i2b2etl.dsb.I2B2DataSourceBackend");
-			DefaultSourceConfigOption option = new DefaultSourceConfigOption();
-			option.setName("resultInstanceId");
-			option.setValue(new Long(resultInstanceId));
-			section.setOptions(new SourceConfigOption[]{option});
-			sc.setDataSourceBackends(new Section[]{section});
-			jobSpec.setPrompts(sc);
-			
-			Destination destination = this.eurekaClient.getDestination(actionId);
-			if (destination == null || !(destination instanceof PatientSetExtractorDestination)) {
-				throw new HttpStatusException(Status.PRECONDITION_FAILED, "Invalid action id " + actionId);
-			}
-			
-			jobSpec.setPropositionIds(Arrays.asList(((PatientSetExtractorDestination) destination).getAliasPropositionId()));
-			Long jobId = this.eurekaClient.submitJob(jobSpec);
+    @GET
+    public Response doSend(
+            @QueryParam("resultInstanceId") String resultInstanceId,
+            @QueryParam("action") String actionId)
+            throws ClientException {
+        InputStream inputStream = null;
+        try {
+            JobSpec jobSpec = new JobSpec();
+            jobSpec.setUpdateData(false);
+            jobSpec.setDestinationId(actionId);
+            jobSpec.setSourceConfigId(properties.getSourceConfigId());
+            SourceConfig sc = new SourceConfig();
+            sc.setId(properties.getSourceConfigId());
+            Section section = new Section();
+            section.setId("edu.emory.cci.aiw.i2b2etl.dsb.I2B2DataSourceBackend");
+            DefaultSourceConfigOption option = new DefaultSourceConfigOption();
+            option.setName("resultInstanceId");
+            option.setValue(new Long(resultInstanceId));
+            section.setOptions(new SourceConfigOption[]{option});
+            sc.setDataSourceBackends(new Section[]{section});
+            jobSpec.setPrompts(sc);
 
-			Job job;
-			JobStatus status;
-			do {
-				try {
-					Thread.sleep(5000L);
-				} catch (InterruptedException ex) {
-					return Response.status(Status.SERVICE_UNAVAILABLE).build();
-				}
-				job = this.eurekaClient.getJob(jobId);
-				status = job.getStatus();
-			} while (status != JobStatus.COMPLETED && status != JobStatus.FAILED);
-			inputStream = this.eurekaClient.getOutput(jobSpec.getDestinationId());
-			return Response.ok(inputStream).type(MediaType.APPLICATION_JSON).build();
-		} catch (ClientException ex) {
-			logError(ex);
-			if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException ioe) {
-					ex.addSuppressed(ioe);
-				}
-			}
-			throw ex;
-		}
-	}
+            Destination destination = this.eurekaClient.getDestination(actionId);
+            if (destination == null || !(destination instanceof PatientSetExtractorDestination)) {
+                throw new HttpStatusException(Status.PRECONDITION_FAILED, "Invalid action id " + actionId);
+            }
 
-	private static void logError(Throwable e) {
-		LOGGER.error("Exception thrown: {}", e);
-	}
+            jobSpec.setPropositionIds(Arrays.asList(((PatientSetExtractorDestination) destination).getAliasPropositionId()));
+            Long jobId = this.eurekaClient.submitJob(jobSpec);
+
+            Job job;
+            JobStatus status;
+            do {
+                try {
+                    Thread.sleep(5000L);
+                } catch (InterruptedException ex) {
+                    return Response.status(Status.SERVICE_UNAVAILABLE).build();
+                }
+                job = this.eurekaClient.getJob(jobId);
+                status = job.getStatus();
+            } while (status != JobStatus.COMPLETED && status != JobStatus.FAILED);
+            inputStream = this.eurekaClient.getOutput(jobSpec.getDestinationId());
+            return Response.ok(inputStream).type(MediaType.APPLICATION_JSON).build();
+        } catch (ClientException ex) {
+            logError(ex);
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException ioe) {
+                    ex.addSuppressed(ioe);
+                }
+            }
+            throw ex;
+        }
+    }
+
+    private static void logError(Throwable e) {
+        LOGGER.error("Exception thrown: {}", e);
+    }
 }

@@ -19,7 +19,6 @@ package org.eurekaclinical.i2b2integration.service.resource;
  * limitations under the License.
  * #L%
  */
-
 import com.google.inject.persist.Transactional;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,6 @@ import org.eurekaclinical.common.resource.AbstractNamedReadOnlyResource;
 import org.eurekaclinical.i2b2integration.service.dao.I2b2DomainDao;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2DomainEntity;
 import org.eurekaclinical.i2b2integration.client.comm.I2b2Domain;
-
 
 /**
  *
@@ -40,25 +38,25 @@ public class I2b2DomainResource extends AbstractNamedReadOnlyResource<I2b2Domain
 
     @Inject
     public I2b2DomainResource(I2b2DomainDao<I2b2DomainEntity> inRoleDao) {
-		super(inRoleDao);
+        super(inRoleDao);
     }
 
-	@Override
+    @Override
     protected I2b2Domain toComm(I2b2DomainEntity domainEntity, HttpServletRequest req) {
         I2b2Domain domain = new I2b2Domain();
         domain.setId(domainEntity.getId());
         domain.setName(domainEntity.getName());
-		domain.setProxyUrl(domainEntity.getProxyUrl());
-		if (req.isUserInRole("admin")) {
-			domain.setAdminUsername(domainEntity.getAdminUsername());
-			domain.setAdminPassword(domainEntity.getAdminPassword());
-		}
+        domain.setProxyUrl(domainEntity.getProxyUrl());
+        if (req.isUserInRole("admin")) {
+            domain.setAdminUsername(domainEntity.getAdminUsername());
+            domain.setAdminPassword(domainEntity.getAdminPassword());
+        }
         return domain;
     }
 
-	@Override
-	protected boolean isAuthorizedEntity(I2b2DomainEntity entity, HttpServletRequest req) {
-		return true;
-	}
+    @Override
+    protected boolean isAuthorizedEntity(I2b2DomainEntity entity, HttpServletRequest req) {
+        return true;
+    }
 
 }

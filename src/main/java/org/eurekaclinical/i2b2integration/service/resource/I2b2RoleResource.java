@@ -19,7 +19,6 @@ package org.eurekaclinical.i2b2integration.service.resource;
  * limitations under the License.
  * #L%
  */
-
 import com.google.inject.persist.Transactional;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,6 @@ import org.eurekaclinical.common.resource.AbstractNamedReadOnlyResource;
 import org.eurekaclinical.i2b2integration.service.dao.I2b2RoleDao;
 import org.eurekaclinical.i2b2integration.service.entity.I2b2RoleEntity;
 import org.eurekaclinical.i2b2integration.client.comm.I2b2Role;
-
 
 /**
  *
@@ -40,10 +38,10 @@ public class I2b2RoleResource extends AbstractNamedReadOnlyResource<I2b2RoleEnti
 
     @Inject
     public I2b2RoleResource(I2b2RoleDao<I2b2RoleEntity> inRoleDao) {
-		super(inRoleDao, false);
+        super(inRoleDao, false);
     }
 
-	@Override
+    @Override
     protected I2b2Role toComm(I2b2RoleEntity roleEntity, HttpServletRequest req) {
         I2b2Role role = new I2b2Role();
         role.setId(roleEntity.getId());
@@ -51,9 +49,9 @@ public class I2b2RoleResource extends AbstractNamedReadOnlyResource<I2b2RoleEnti
         return role;
     }
 
-	@Override
-	protected boolean isAuthorizedEntity(I2b2RoleEntity entity, HttpServletRequest req) {
-		return true;
-	}
+    @Override
+    protected boolean isAuthorizedEntity(I2b2RoleEntity entity, HttpServletRequest req) {
+        return true;
+    }
 
 }
