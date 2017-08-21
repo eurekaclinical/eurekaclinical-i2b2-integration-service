@@ -21,14 +21,14 @@ package org.eurekaclinical.i2b2integration.service.props;
  */
 
 import javax.inject.Singleton;
-import org.eurekaclinical.standardapis.props.CasEurekaClinicalProperties;
+import org.eurekaclinical.standardapis.props.CasJerseyEurekaClinicalProperties;
 
 /**
  *
  * @author Andrew Post
  */
 @Singleton
-public class I2b2EurekaServicesProperties extends CasEurekaClinicalProperties {
+public class I2b2EurekaServicesProperties extends CasJerseyEurekaClinicalProperties {
 
 	public I2b2EurekaServicesProperties() {
 		super("/etc/ec-i2b2-integration");

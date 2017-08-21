@@ -25,8 +25,9 @@ import com.google.inject.Injector;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceServletContextListener;
 import javax.servlet.ServletContextEvent;
-import org.eurekaclinical.eureka.client.EurekaProxyClient;
-import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementProxyClient;
+import org.eurekaclinical.common.config.ClientSessionListener;
+import org.eurekaclinical.eureka.client.EurekaClient;
+import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementClient;
 
 /**
  * Configuration for Guice dependency injection.
@@ -37,23 +38,20 @@ import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementProxyC
 public final class ContextListener extends GuiceServletContextListener {
 
     private final I2b2EurekaServicesProperties properties = new I2b2EurekaServicesProperties();
-    private final EurekaProxyClient eurekaClient = new EurekaProxyClient(this.properties.getEurekaServiceUrl());
-    private final EurekaClinicalUserAgreementProxyClient userAgreementClient = new EurekaClinicalUserAgreementProxyClient(this.properties.getUserAgreementServiceUrl());
 
     @Override
     protected Injector getInjector() {
-
         return Guice.createInjector(
                 new JpaPersistModule("i2b2-jpa-unit"),
                 new ServletModule(this.properties),
-                new AppModule(this.eurekaClient, this.userAgreementClient));
+                new AppModule(this.properties));
     }
 
     @Override
-    public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        this.eurekaClient.close();
-        this.userAgreementClient.close();
+    public void contextInitialized(ServletContextEvent servletContextEvent) {
+        super.contextInitialized(servletContextEvent);
+        servletContextEvent.getServletContext().addListener(new ClientSessionListener(EurekaClient.class));
+        servletContextEvent.getServletContext().addListener(new ClientSessionListener(EurekaClinicalUserAgreementClient.class));
     }
-    
     
 }

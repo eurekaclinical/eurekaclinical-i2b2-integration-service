@@ -51,7 +51,7 @@ import org.eurekaclinical.i2b2integration.service.entity.I2b2RoleEntity;
 import org.eurekaclinical.i2b2integration.client.comm.I2b2User;
 import org.eurekaclinical.i2b2integration.service.props.I2b2EurekaServicesProperties;
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
-import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementProxyClient;
+import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementClient;
 import org.jasig.cas.client.authentication.AttributePrincipal;
 
 /**
@@ -65,7 +65,7 @@ public class I2b2UserResource {
     private final I2b2ClientFactory i2b2ClientFactory;
     private final I2b2UserSetterFactory i2b2UserSetterFactory;
     private final I2b2EurekaServicesProperties properties;
-    private final EurekaClinicalUserAgreementProxyClient userAgreementClient;
+    private final EurekaClinicalUserAgreementClient userAgreementClient;
     private final I2b2DomainDao<I2b2DomainEntity> domainDao;
     private final I2b2ProjectDao<I2b2ProjectEntity> i2b2ProjectDao;
     private final I2b2RoleDao<I2b2RoleEntity> i2b2RoleDao;
@@ -74,7 +74,7 @@ public class I2b2UserResource {
     public I2b2UserResource(I2b2ClientFactory i2b2ClientFactory,
             I2b2UserSetterFactory i2b2UserSetterFactory,
             I2b2EurekaServicesProperties properties,
-            EurekaClinicalUserAgreementProxyClient userAgreementClient,
+            EurekaClinicalUserAgreementClient userAgreementClient,
             I2b2ProjectDao<I2b2ProjectEntity> inI2b2ProjectDao,
             I2b2DomainDao<I2b2DomainEntity> inDomainDao,
             I2b2RoleDao<I2b2RoleEntity> inI2b2RoleDao) {
