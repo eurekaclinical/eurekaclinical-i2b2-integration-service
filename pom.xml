@@ -32,9 +32,9 @@
 	
     <properties>
         <ec-i2b2-client-version>2.0-Alpha-1</ec-i2b2-client-version>
-        <ec-i2b2-integration-client-version>2.0-Alpha-4</ec-i2b2-integration-client-version>
-        <eureka-client-version>3.0-Alpha-11</eureka-client-version>
-        <ec-user-agreement-client-version>2.0-Alpha-3</ec-user-agreement-client-version>
+        <ec-i2b2-integration-client-version>2.0-Alpha-5</ec-i2b2-integration-client-version>
+        <eureka-client-version>3.0-Alpha-12</eureka-client-version>
+        <ec-user-agreement-client-version>2.0-Alpha-4</ec-user-agreement-client-version>
         <javautil-version>4.0-Alpha-4</javautil-version>
     </properties>
 	
