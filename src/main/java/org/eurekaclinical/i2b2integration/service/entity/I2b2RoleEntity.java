@@ -37,7 +37,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "i2b2roles")
-public class I2b2RoleEntity implements org.eurekaclinical.standardapis.entity.Entity {
+public class I2b2RoleEntity implements org.eurekaclinical.standardapis.entity.Entity<Long> {
 
     /**
      * The role's unique identifier.
