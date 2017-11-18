@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>eurekaclinical-i2b2-integration-service</artifactId>
     <packaging>war</packaging>
-    <version>1.0-Alpha-10</version>
+    <version>1.0-Alpha-11-SNAPSHOT</version>
     <name>Eureka! Clinical i2b2 Integration Service</name>
     <description>A service that provides REST endpoints for the i2b2 data export
         plugin. It supports exporting an i2b2 patient set with a
@@ -22,7 +22,7 @@
         <connection>scm:git:https://github.com/eurekaclinical/eurekaclinical-i2b2-integration-service.git</connection>
         <developerConnection>scm:git:https://github.com/eurekaclinical/eurekaclinical-i2b2-integration-service.git</developerConnection>
         <url>https://github.com/eurekaclinical/eurekaclinical-i2b2-integration-service.git</url>
-        <tag>eurekaclinical-i2b2-integration-service-1.0-Alpha-10</tag>
+        <tag>HEAD</tag>
     </scm>
 	
     <issueManagement>
