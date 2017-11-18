@@ -242,7 +242,7 @@
                                 </webapp>
                             </webapps>
                             <addContextWarDependencies>true</addContextWarDependencies>
-                            <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>
+                            <addWarDependenciesInClassloader>false</addWarDependenciesInClassloader>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -264,6 +264,15 @@
                     </plugin>
                 </plugins>
             </build>
+            <dependencies>
+                <dependency>
+                    <groupId>org.eurekaclinical</groupId>
+                    <artifactId>cas-mock</artifactId>
+                    <version>${cas-mock-version}</version>
+                    <type>war</type>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
         </profile>
     </profiles>
 </project>
