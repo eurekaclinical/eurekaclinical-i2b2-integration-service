@@ -26,8 +26,6 @@ import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceServletContextListener;
 import javax.servlet.ServletContextEvent;
 import org.eurekaclinical.common.config.ClientSessionListener;
-import org.eurekaclinical.eureka.client.EurekaClient;
-import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementClient;
 
 /**
  * Configuration for Guice dependency injection.
@@ -50,8 +48,7 @@ public final class ContextListener extends GuiceServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         super.contextInitialized(servletContextEvent);
-        servletContextEvent.getServletContext().addListener(new ClientSessionListener(EurekaClient.class));
-        servletContextEvent.getServletContext().addListener(new ClientSessionListener(EurekaClinicalUserAgreementClient.class));
+        servletContextEvent.getServletContext().addListener(new ClientSessionListener());
     }
     
 }
