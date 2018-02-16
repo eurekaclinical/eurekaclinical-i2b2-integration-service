@@ -19,11 +19,9 @@ package org.eurekaclinical.i2b2integration.service.config;
  * limitations under the License.
  * #L%
  */
-
 import java.util.Map;
 import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWithPersist;
 import org.eurekaclinical.i2b2integration.service.props.I2b2EurekaServicesProperties;
-
 
 /**
  * Jersey servlet configuration.
@@ -32,18 +30,19 @@ import org.eurekaclinical.i2b2integration.service.props.I2b2EurekaServicesProper
  * @since 1.0
  */
 public class ServletModule extends AbstractAuthorizingJerseyServletModuleWithPersist {
-	private static final String PACKAGE_NAMES = "org.eurekaclinical.i2b2integration.service.resource";
-	
-	public ServletModule(I2b2EurekaServicesProperties inProperties) {
-		super(inProperties, PACKAGE_NAMES);
-	}
-	
-	@Override
-	public Map<String, String> getCasValidationFilterInitParams() {
-		Map<String, String> params = super.getCasValidationFilterInitParams();
-		params.put("proxyCallbackUrl", getCasProxyCallbackUrl());
+
+    private static final String PACKAGE_NAMES = "org.eurekaclinical.i2b2integration.service.resource";
+
+    public ServletModule(I2b2EurekaServicesProperties inProperties) {
+        super(inProperties, PACKAGE_NAMES, true);
+    }
+
+    @Override
+    public Map<String, String> getCasValidationFilterInitParams() {
+        Map<String, String> params = super.getCasValidationFilterInitParams();
+        params.put("proxyCallbackUrl", getCasProxyCallbackUrl());
         params.put("proxyReceptorUrl", getCasProxyCallbackPath());
-		return params;
-	}
-	
+        return params;
+    }
+
 }
