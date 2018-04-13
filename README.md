@@ -14,6 +14,11 @@ Version 1.1 added standard property names. It responds to either, and it priorit
 non-standard names if both are present. The non-standard property names are deprecated and will be 
 removed in a future release.
 
+### Version 1.0.1
+We inadvertently left in an old cas-mock dependency. It only affected running
+eurekaclinical-i2b2-integration-service in embedded tomcat for testing. The
+version is now current.
+
 ### Version 1.0
 Initial version.
 
