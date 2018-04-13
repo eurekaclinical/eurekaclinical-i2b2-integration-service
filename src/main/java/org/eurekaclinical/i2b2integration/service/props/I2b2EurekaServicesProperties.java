@@ -19,7 +19,6 @@ package org.eurekaclinical.i2b2integration.service.props;
  * limitations under the License.
  * #L%
  */
-
 import javax.inject.Singleton;
 import org.eurekaclinical.standardapis.props.CasJerseyEurekaClinicalProperties;
 
@@ -30,34 +29,44 @@ import org.eurekaclinical.standardapis.props.CasJerseyEurekaClinicalProperties;
 @Singleton
 public class I2b2EurekaServicesProperties extends CasJerseyEurekaClinicalProperties {
 
-	public I2b2EurekaServicesProperties() {
-		super("/etc/ec-i2b2-integration");
-	}
-	
-	@Override
-	public String getProxyCallbackServer() {
-		return this.getValue("eurekaclinical.i2b2service.callbackserver", "https://localhost:8443");
-	}
-	
-	public String getEurekaServiceUrl() {
-		return this.getValue("eureka.services.url", "https://localhost/eureka-services");
-	}
-	
-	public String getSourceConfigId() {
-		return this.getValue("eurekaclinical.i2b2service.sourceConfigId", "i2b2 Eureka Service");
-	}
-	
-	public String getUserAgreementServiceUrl() {
-		return this.getValue("eurekaclinical.useragreementservice.url");
-	}
-	
-	public String getCasEmailAttribute() {
-		return this.getValue("cas.attribute.email");
-	}
+    public I2b2EurekaServicesProperties() {
+        super("/etc/ec-i2b2-integration");
+    }
 
-	@Override
-	public String getUrl() {
-		return this.getValue("eurekaclinical.i2b2integrationservice.url", "https://localhost:8443/i2b2-eureka-service");
-	}
-	
+    @Override
+    public String getProxyCallbackServer() {
+        String result = getValue("eurekaclinical.i2b2service.callbackserver");
+        if (result != null) {
+            return result;
+        } else {
+            return getValue("eurekaclinical.i2b2integrationservice.callbackserver");
+        }
+    }
+
+    public String getEurekaServiceUrl() {
+        return getValue("eureka.services.url");
+    }
+
+    public String getSourceConfigId() {
+        String result = getValue("eurekaclinical.i2b2service.sourceConfigId");
+        if (result != null) {
+            return result;
+        } else {
+            return getValue("eurekaclinical.i2b2integrationservice.sourceConfigId");
+        }
+    }
+
+    public String getUserAgreementServiceUrl() {
+        return getValue("eurekaclinical.useragreementservice.url");
+    }
+
+    public String getCasEmailAttribute() {
+        return getValue("cas.attribute.email");
+    }
+
+    @Override
+    public String getUrl() {
+        return getValue("eurekaclinical.i2b2integrationservice.url");
+    }
+
 }
