@@ -4,8 +4,18 @@
 ## What does it do?
 It provides RESTful APIs for managing i2b2 users and accessing data.
 
-## Version 1.0 development series
+## Version history
 Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-i2b2-integration-service/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-i2b2-integration-service)
+
+### Version 1.1
+The properties in the application.properties were named in a non-standard way in version 1.0,
+starting with eurekaclinical.i2b2service rather than eurekaclinical.i2b2integrationservice.
+Version 1.1 added standard property names. It responds to either, and it prioritizes the original
+non-standard names if both are present. The non-standard property names are deprecated and will be 
+removed in a future release.
+
+### Version 1.0
+Initial version.
 
 ## Build requirements
 * [Oracle Java JDK 8](http://www.oracle.com/technetwork/java/javase/overview/index.html)
