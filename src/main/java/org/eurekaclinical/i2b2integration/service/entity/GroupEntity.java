@@ -126,7 +126,7 @@ public class GroupEntity implements org.eurekaclinical.standardapis.entity.Group
 	}
 
 	public void addI2b2Project(I2b2ProjectEntity inI2b2Project) {
-		if (this.i2b2Projects.contains(inI2b2Project)) {
+		if (!this.i2b2Projects.contains(inI2b2Project)) {
 			this.i2b2Projects.add(inI2b2Project);
 		}
 	}
