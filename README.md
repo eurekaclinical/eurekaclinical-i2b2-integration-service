@@ -93,7 +93,7 @@ Properties:
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
 
 ##### GET `/api/protected/roles`
-Returns an array of all User objects.
+Returns an array of all Role objects.
 
 ##### GET `/api/protected/roles/{id}`
 Returns a specified Role object by the value of its id property, which is unique.
