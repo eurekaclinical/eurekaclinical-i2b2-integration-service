@@ -21,6 +21,7 @@ package org.eurekaclinical.i2b2integration.service.config;
  */
 import java.util.Map;
 import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWithPersist;
+import org.eurekaclinical.i2b2integration.service.filter.AutoAuthorizationFilter;
 import org.eurekaclinical.i2b2integration.service.props.I2b2EurekaServicesProperties;
 
 /**
@@ -45,4 +46,9 @@ public class ServletModule extends AbstractAuthorizingJerseyServletModuleWithPer
         return params;
     }
 
+    @Override
+    protected void setupFilters() {
+        super.setupFilters(); 
+        filter("/*").through(AutoAuthorizationFilter.class);
+    }
 }
