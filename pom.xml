@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.eurekaclinical</groupId>
         <artifactId>eurekaclinical-parent-standard-deps</artifactId>
-        <version>3-Alpha-2</version>
+        <version>3</version>
     </parent>
 
     <url>https://github.com/eurekaclinical/eurekaclinical-i2b2-integration-service.git</url>
@@ -36,10 +36,10 @@
         <eureka-client-version>3.0</eureka-client-version>
         <ec-user-agreement-client-version>2.0</ec-user-agreement-client-version>
         <javautil-version>4.0</javautil-version>
-        <ec-common-version>2.0</ec-common-version>
-        <ec-standard-apis-version>2.0</ec-standard-apis-version>
-        <cas-mock-version>2.1-Beta-1</cas-mock-version>
-        <eurekaclinical-user-agreement-service-version>2.0</eurekaclinical-user-agreement-service-version>
+        <ec-common-version>4.0</ec-common-version>
+        <ec-standard-apis-version>3.0.1</ec-standard-apis-version>
+        <cas-mock-version>2.1</cas-mock-version>
+        <eurekaclinical-user-agreement-service-version>3.1-Beta-1</eurekaclinical-user-agreement-service-version>
     </properties>
 	
     <build>
