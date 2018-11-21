@@ -46,7 +46,7 @@ public class UserTemplateResource extends AbstractUserTemplateResource<I2b2Integ
     private final GroupDao<GroupEntity> groupDao;
 
     @Inject
-    public UserTemplateResource(UserTemplateDao<UserTemplateEntity> inUserDao, RoleDao<RoleEntity> inRoleDao, GroupDao<GroupEntity> inGroupDao) {
+    public UserTemplateResource(UserTemplateDao<RoleEntity, UserTemplateEntity> inUserDao, RoleDao<RoleEntity> inRoleDao, GroupDao<GroupEntity> inGroupDao) {
         super(inUserDao);
         this.roleDao = inRoleDao;
         this.groupDao = inGroupDao;

@@ -36,6 +36,7 @@ import org.eurekaclinical.eureka.client.EurekaClient;
 import org.eurekaclinical.eureka.client.comm.DefaultSourceConfigOption;
 import org.eurekaclinical.eureka.client.comm.Destination;
 import org.eurekaclinical.eureka.client.comm.Job;
+import org.eurekaclinical.eureka.client.comm.JobMode;
 import org.eurekaclinical.eureka.client.comm.JobSpec;
 import org.eurekaclinical.eureka.client.comm.JobStatus;
 import org.eurekaclinical.eureka.client.comm.PatientSetExtractorDestination;
@@ -75,7 +76,8 @@ public class PatientSetResource {
         InputStream inputStream = null;
         try {
             JobSpec jobSpec = new JobSpec();
-            jobSpec.setUpdateData(false);
+            JobMode jobMode = this.eurekaClient.getJobModeByName("REPLACE");
+            jobSpec.setJobMode(jobMode.getId());
             jobSpec.setDestinationId(actionId);
             jobSpec.setSourceConfigId(properties.getSourceConfigId());
             SourceConfig sc = new SourceConfig();

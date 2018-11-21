@@ -20,12 +20,13 @@ package org.eurekaclinical.i2b2integration.service.dao;
  * #L%
  */
 
+import org.eurekaclinical.i2b2integration.service.entity.RoleEntity;
 import org.eurekaclinical.i2b2integration.service.entity.UserEntity;
 
 /**
  *
  * @author Andrew Post
  */
-public interface UserDao extends org.eurekaclinical.standardapis.dao.UserDao<UserEntity> {
+public interface UserDao extends org.eurekaclinical.standardapis.dao.UserDao<RoleEntity, UserEntity> {
 	
 }

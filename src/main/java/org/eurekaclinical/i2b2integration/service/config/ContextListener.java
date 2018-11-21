@@ -26,6 +26,7 @@ import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceServletContextListener;
 import javax.servlet.ServletContextEvent;
 import org.eurekaclinical.common.config.ClientSessionListener;
+import org.eurekaclinical.common.config.ServiceServletModuleWithAutoAuthorization;
 
 /**
  * Configuration for Guice dependency injection.
@@ -34,6 +35,8 @@ import org.eurekaclinical.common.config.ClientSessionListener;
  * @since 1.0
  */
 public final class ContextListener extends GuiceServletContextListener {
+    
+    private static final String PACKAGE_NAMES = "org.eurekaclinical.i2b2integration.service.resource";
 
     private final I2b2EurekaServicesProperties properties = new I2b2EurekaServicesProperties();
 
@@ -41,7 +44,7 @@ public final class ContextListener extends GuiceServletContextListener {
     protected Injector getInjector() {
         return Guice.createInjector(
                 new JpaPersistModule("i2b2-jpa-unit"),
-                new ServletModule(this.properties),
+                new ServiceServletModuleWithAutoAuthorization(this.properties, PACKAGE_NAMES),
                 new AppModule(this.properties));
     }
 

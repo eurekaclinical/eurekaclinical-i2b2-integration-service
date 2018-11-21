@@ -23,6 +23,7 @@ package org.eurekaclinical.i2b2integration.service.dao;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
+import org.eurekaclinical.i2b2integration.service.entity.RoleEntity;
 import org.eurekaclinical.i2b2integration.service.entity.UserEntity;
 
 
@@ -31,7 +32,7 @@ import org.eurekaclinical.i2b2integration.service.entity.UserEntity;
  *
  * @author Andrew Post
  */
-public class JpaUserDao extends org.eurekaclinical.standardapis.dao.AbstractJpaUserDao<UserEntity> implements UserDao {
+public class JpaUserDao extends org.eurekaclinical.standardapis.dao.AbstractJpaUserDao<RoleEntity, UserEntity> implements UserDao {
 
     /**
      * Create an object with the give entity manager.
@@ -42,6 +43,12 @@ public class JpaUserDao extends org.eurekaclinical.standardapis.dao.AbstractJpaU
     @Inject
     public JpaUserDao(final Provider<EntityManager> inEMProvider) {
         super(UserEntity.class, inEMProvider);
+    }
+
+    @Override
+    public UserEntity newUser() {
+        UserEntity result = new UserEntity();
+        return result;
     }
 
 }

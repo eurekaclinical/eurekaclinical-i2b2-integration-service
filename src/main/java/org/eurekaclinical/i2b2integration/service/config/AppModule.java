@@ -23,6 +23,7 @@ package org.eurekaclinical.i2b2integration.service.config;
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
 import com.google.inject.servlet.SessionScoped;
+import org.eurekaclinical.common.config.AbstractAppModule;
 import org.eurekaclinical.eureka.client.EurekaClient;
 import org.eurekaclinical.i2b2integration.service.dao.I2b2DomainDao;
 import org.eurekaclinical.i2b2integration.service.dao.I2b2ProjectDao;
@@ -58,25 +59,26 @@ import org.eurekaclinical.useragreement.client.EurekaClinicalUserAgreementClient
  * @author Michel Mansour
  * @since 1.0
  */
-public class AppModule extends AbstractModule {
+public class AppModule extends AbstractAppModule {
 
     private final EurekaClientProvider eurekaClientProvider;
     private final EurekaClinicalUserAgreementClientProvider userAgreementClientProvider;
 
     public AppModule(I2b2EurekaServicesProperties inProperties) {
+        super(JpaUserDao.class, JpaUserTemplateDao.class);
         this.eurekaClientProvider = new EurekaClientProvider(inProperties.getEurekaServiceUrl());
         this.userAgreementClientProvider = new EurekaClinicalUserAgreementClientProvider(inProperties.getUserAgreementServiceUrl());
     }
     
     @Override
     protected void configure() {
+        super.configure();
         bind(I2b2ClientFactory.class).to(I2b2ClientFactoryImpl.class);
         bind(I2b2UserSetterFactory.class).to(I2b2UserSetterFactoryImpl.class);
         bind(EurekaClient.class).toProvider(this.eurekaClientProvider).in(SessionScoped.class);
         bind(EurekaClinicalUserAgreementClient.class).toProvider(this.userAgreementClientProvider).in(SessionScoped.class);
-        bind(new TypeLiteral<UserDao<UserEntity>>() {}).to(JpaUserDao.class);
-        bind(new TypeLiteral<UserTemplateDao<UserTemplateEntity>>() {}).to(JpaUserTemplateDao.class);
-        bind(new TypeLiteral<UserDao<? extends org.eurekaclinical.standardapis.entity.UserEntity<? extends org.eurekaclinical.standardapis.entity.RoleEntity>>>() {}).to(JpaUserDao.class);
+        bind(new TypeLiteral<UserDao<RoleEntity, UserEntity>>() {}).to(JpaUserDao.class);
+        bind(new TypeLiteral<UserTemplateDao<RoleEntity, UserTemplateEntity>>() {}).to(JpaUserTemplateDao.class);
         bind(new TypeLiteral<RoleDao<RoleEntity>>() {}).to(JpaRoleDao.class);
         bind(new TypeLiteral<GroupDao<GroupEntity>>() {}).to(JpaGroupDao.class);
         bind(new TypeLiteral<I2b2ProjectDao<I2b2ProjectEntity>>() {}).to(JpaI2b2ProjectDao.class);

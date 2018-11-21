@@ -23,6 +23,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import javax.persistence.EntityManager;
+import org.eurekaclinical.i2b2integration.service.entity.RoleEntity;
 import org.eurekaclinical.i2b2integration.service.entity.UserTemplateEntity;
 import org.eurekaclinical.standardapis.dao.AbstractJpaUserTemplateDao;
 import org.eurekaclinical.i2b2integration.service.entity.UserTemplateEntity_;
@@ -32,7 +33,7 @@ import org.eurekaclinical.i2b2integration.service.entity.UserTemplateEntity_;
  *
  * @author Andrew Post
  */
-public class JpaUserTemplateDao extends AbstractJpaUserTemplateDao<UserTemplateEntity> {
+public class JpaUserTemplateDao extends AbstractJpaUserTemplateDao<RoleEntity, UserTemplateEntity> {
 
 	/**
 	 * Create an object with the give entity manager.
