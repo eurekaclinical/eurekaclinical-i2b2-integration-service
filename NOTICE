@@ -14,13 +14,17 @@ under the License.
 This project includes:
   AntLR Parser Generator under BSD License
   AOP alliance under Public Domain
+  Apache Commons CLI under Apache License, Version 2.0
   Apache Commons Codec under Apache License, Version 2.0
+  Apache Commons Collections under Apache License, Version 2.0
   Apache Commons Lang under Apache License, Version 2.0
   Apache FreeMarker under Apache License, Version 2.0
   Commons Logging under The Apache Software License, Version 2.0
   Core Hibernate O/RM functionality under GNU Lesser General Public License
   Data Mapper for Jackson under The Apache Software License, Version 2.0
+  Datastore under Apache License, Version 2.0
   dom4j under BSD License
+  Drools :: Rete-OO Core under The Apache Software License, Version 2.0
   Eureka Clinical i2b2 Integration Client under Apache License, Version 2.0
   Eureka! Client under Apache License, Version 2.0
   Eureka! Clinical Common under Apache License, Version 2.0
@@ -72,7 +76,10 @@ This project includes:
   JTA 1.1 under The Apache Software License, Version 2.0
   JUnit under Eclipse Public License 1.0
   MIME streaming extension under CDDL 1.1 or GPL2 w/ CPE
+  mvel under The Apache Software License, Version 2.0
   opencsv under Apache 2
+  Oracle NoSQL Database Server under Apache 2
+  Protempa Framework under Apache License, Version 2.0
   SLF4J API Module under MIT License
   SLF4J JDK14 Binding under MIT License
   XML Commons External Components XML APIs under The Apache Software License, Version 2.0

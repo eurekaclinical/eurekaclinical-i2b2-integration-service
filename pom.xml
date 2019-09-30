@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.eurekaclinical</groupId>
         <artifactId>eurekaclinical-parent-standard-deps</artifactId>
-        <version>3-Alpha-2</version>
+        <version>4-Alpha-2-SNAPSHOT</version>
     </parent>
 
     <url>https://github.com/eurekaclinical/eurekaclinical-i2b2-integration-service.git</url>
@@ -31,15 +31,15 @@
     </issueManagement>
 	
     <properties>
-        <ec-i2b2-client-version>2.0</ec-i2b2-client-version>
-        <ec-i2b2-integration-client-version>2.0</ec-i2b2-integration-client-version>
-        <eureka-client-version>3.0</eureka-client-version>
-        <ec-user-agreement-client-version>2.0</ec-user-agreement-client-version>
-        <javautil-version>4.0</javautil-version>
-        <ec-common-version>2.0</ec-common-version>
-        <ec-standard-apis-version>2.0</ec-standard-apis-version>
-        <cas-mock-version>2.1-Beta-1</cas-mock-version>
-        <eurekaclinical-user-agreement-service-version>2.0</eurekaclinical-user-agreement-service-version>
+        <ec-i2b2-client-version>2.1-SNAPSHOT</ec-i2b2-client-version>
+        <ec-i2b2-integration-client-version>2.1-Alpha-2-SNAPSHOT</ec-i2b2-integration-client-version>
+        <eureka-client-version>5.0-Alpha-5-SNAPSHOT</eureka-client-version>
+        <ec-user-agreement-client-version>2.3-Beta-2-SNAPSHOT</ec-user-agreement-client-version>
+        <javautil-version>4.3-SNAPSHOT</javautil-version>
+        <ec-common-version>5.0-Alpha-5-SNAPSHOT</ec-common-version>
+        <ec-standard-apis-version>4.0-Alpha-4-SNAPSHOT</ec-standard-apis-version>
+        <cas-mock-version>2.2-SNAPSHOT</cas-mock-version>
+        <eurekaclinical-user-agreement-service-version>3.1-Beta-2-SNAPSHOT</eurekaclinical-user-agreement-service-version>
     </properties>
 	
     <build>
@@ -222,7 +222,7 @@
                                         </artifactItem>
                                     </artifactItems>
                                     <includes>WEB-INF/classes/dbmigration/changelog-master.xml</includes>
-                                    <outputDirectory>${project.build.directory}/eureka-config/eurekaclinical-user-agreement-service-dbmigration</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/eureka-config/eurekaclinical-user-agreement-service</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>
@@ -253,17 +253,29 @@
                         <artifactId>liquibase-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>liquibase-populate-db</id>
+                                <id>liquibase-populate-i2b2service-db</id>
                                 <phase>process-resources</phase>
                                 <goals>
                                     <goal>update</goal>
                                 </goals>
                                 <configuration>
                                     <changeLogFile>${project.build.directory}/classes/dbmigration/changelog-master.xml</changeLogFile>
-                                    <url>jdbc:h2:file:${project.build.directory}/db/db</url>
+                                    <url>jdbc:h2:file:${project.build.directory}/db/i2b2-service</url>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>liquibase-populate-user-agrements-service-db</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>update</goal>
+                                </goals>
+                                <configuration>
+                                    <changeLogFile>${project.build.directory}/eureka-config/eurekaclinical-user-agreement-service/WEB-INF/classes/dbmigration/changelog-master.xml</changeLogFile>
+                                    <url>jdbc:h2:file:${project.build.directory}/db/ec-user-agreement-service</url>
                                 </configuration>
                             </execution>
                         </executions>
+                        
                     </plugin>
                 </plugins>
             </build>
