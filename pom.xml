@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.eurekaclinical</groupId>
         <artifactId>eurekaclinical-parent-standard-deps</artifactId>
-        <version>4-Alpha-2-SNAPSHOT</version>
+        <version>4-Alpha-2</version>
     </parent>
 
     <url>https://github.com/eurekaclinical/eurekaclinical-i2b2-integration-service.git</url>
