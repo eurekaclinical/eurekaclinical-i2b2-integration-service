@@ -40,6 +40,7 @@
         <ec-standard-apis-version>4.1-Alpha-1-SNAPSHOT</ec-standard-apis-version>
         <cas-mock-version>2.4-SNAPSHOT</cas-mock-version>
         <eurekaclinical-user-agreement-service-version>3.2-Alpha-1-SNAPSHOT</eurekaclinical-user-agreement-service-version>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>
 	
     <build>
