@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.eurekaclinical</groupId>
         <artifactId>eurekaclinical-parent-standard-deps</artifactId>
-        <version>4-Alpha-3</version>
+        <version>4-Alpha-4-SNAPSHOT</version>
     </parent>
 
     <url>https://github.com/eurekaclinical/eurekaclinical-i2b2-integration-service.git</url>
@@ -31,15 +31,15 @@
     </issueManagement>
 	
     <properties>
-        <ec-i2b2-client-version>2.2</ec-i2b2-client-version>
-        <ec-i2b2-integration-client-version>[2.1,)</ec-i2b2-integration-client-version>
-        <eureka-client-version>[5.0,)</eureka-client-version>
-        <ec-user-agreement-client-version>[2.3,)</ec-user-agreement-client-version>
-        <javautil-version>[4.4,)</javautil-version>
-        <ec-common-version>[5.0,)</ec-common-version>
-        <ec-standard-apis-version>[4.0,)</ec-standard-apis-version>
-        <cas-mock-version>2.3</cas-mock-version>
-        <eurekaclinical-user-agreement-service-version>[3.1,)</eurekaclinical-user-agreement-service-version>
+        <ec-i2b2-client-version>2.3-SNAPSHOT</ec-i2b2-client-version>
+        <ec-i2b2-integration-client-version>2.2-Alpha-1-SNAPSHOT</ec-i2b2-integration-client-version>
+        <eureka-client-version>5.1-Alpha-1-SNAPSHOT</eureka-client-version>
+        <ec-user-agreement-client-version>2.4-Alpha-1-SNAPSHOT</ec-user-agreement-client-version>
+        <javautil-version>4.5-SNAPSHOT</javautil-version>
+        <ec-common-version>5.1-Alpha-1-SNAPSHOT</ec-common-version>
+        <ec-standard-apis-version>4.1-Alpha-1-SNAPSHOT</ec-standard-apis-version>
+        <cas-mock-version>2.4-SNAPSHOT</cas-mock-version>
+        <eurekaclinical-user-agreement-service-version>3.2-Alpha-1-SNAPSHOT</eurekaclinical-user-agreement-service-version>
     </properties>
 	
     <build>
