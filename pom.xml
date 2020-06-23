@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>eurekaclinical-i2b2-integration-service</artifactId>
     <packaging>war</packaging>
-    <version>2.1-Alpha-1-SNAPSHOT</version>
+    <version>2.1-Alpha-2-SNAPSHOT</version>
     <name>Eureka! Clinical i2b2 Integration Service</name>
     <description>A service that provides REST endpoints for the i2b2 data export
         plugin. It supports exporting an i2b2 patient set with a
