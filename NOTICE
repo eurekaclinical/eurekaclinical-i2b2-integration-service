@@ -18,8 +18,10 @@ This project includes:
   Apache Commons CLI under Apache License, Version 2.0
   Apache Commons Codec under Apache License, Version 2.0
   Apache Commons Collections under Apache License, Version 2.0
+  Apache Commons DBCP under Apache License, Version 2.0
   Apache Commons Lang under Apache License, Version 2.0
   Apache Commons Logging under The Apache Software License, Version 2.0
+  Apache Commons Pool under Apache License, Version 2.0
   Apache FreeMarker under Apache License, Version 2.0
   Byte Buddy (without dependencies) under Apache License, Version 2.0
   Checker Qual under GNU General Public License, version 2 (GPL2), with the classpath exception or The MIT License
