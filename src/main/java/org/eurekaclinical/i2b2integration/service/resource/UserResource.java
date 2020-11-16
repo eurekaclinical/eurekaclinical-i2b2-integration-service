@@ -45,8 +45,8 @@ import org.eurekaclinical.i2b2integration.client.comm.I2b2IntegrationUser;
 import org.eurekaclinical.standardapis.dao.UserTemplateDao;
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
 import org.jasig.cas.client.authentication.AttributePrincipal;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  *
@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
 public class UserResource extends AbstractUserResource<I2b2IntegrationUser, UserEntity, RoleEntity> {
 
     private static final Logger LOGGER
-            = LoggerFactory.getLogger(UserResource.class);
+            = Logger.getLogger(UserResource.class.getName());
 
     private static final AutoAuthCriteriaParser AUTO_AUTH_CRITERIA_PARSER = new AutoAuthCriteriaParser();
 
@@ -94,8 +94,8 @@ public class UserResource extends AbstractUserResource<I2b2IntegrationUser, User
     private UserEntity createOrGetUserEntity(HttpServletRequest req) {
         AttributePrincipal userPrincipal = (AttributePrincipal) req.getUserPrincipal();
         Map<String, Object> attributes = userPrincipal.getAttributes();
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("User {} has attributes {}",
+        if (LOGGER.getLevel() == Level.SEVERE) {
+            LOGGER.log(Level.SEVERE, "User {} has attributes {}",
                     new Object[]{
                         req.getRemoteUser(),
                         attributes
@@ -119,12 +119,12 @@ public class UserResource extends AbstractUserResource<I2b2IntegrationUser, User
                             throw new HttpStatusException(Response.Status.FORBIDDEN);
                         }
                     } catch (CriteriaParseException ex) {
-                        LOGGER.error("Unexpected error determining if user {} with attributes {} can be auto-authorized",
+                        LOGGER.log(Level.SEVERE, "Unexpected error determining if user {} with attributes {} can be auto-authorized",
                                 new Object[]{
                                     req.getRemoteUser(),
                                     attributes
                                 });
-                        LOGGER.error("Exception was {}", ex);
+                        LOGGER.log(Level.SEVERE, "Exception was {}", ex);
                         throw new HttpStatusException(Response.Status.INTERNAL_SERVER_ERROR);
                     }
                 } else {

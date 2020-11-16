@@ -44,8 +44,8 @@ import org.eurekaclinical.eureka.client.comm.SourceConfig;
 import org.eurekaclinical.eureka.client.comm.SourceConfig.Section;
 import org.eurekaclinical.eureka.client.comm.SourceConfigOption;
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * Service for i2b2 to request that a specified patient set be sent to another
@@ -57,7 +57,7 @@ import org.slf4j.LoggerFactory;
 @Produces(MediaType.APPLICATION_JSON)
 public class PatientSetResource {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PatientSetResource.class);
+    private static final Logger LOGGER = Logger.getLogger(PatientSetResource.class.getName());
 
     private final EurekaClient eurekaClient;
     private final I2b2EurekaServicesProperties properties;
@@ -126,6 +126,6 @@ public class PatientSetResource {
     }
 
     private static void logError(Throwable e) {
-        LOGGER.error("Exception thrown: {}", e);
+        LOGGER.log(Level.SEVERE, "Exception thrown: {}", e);
     }
 }
